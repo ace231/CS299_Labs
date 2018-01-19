@@ -3,6 +3,8 @@
 # Project 3
 
 
+import random
+
 # Problem 1 #
 
 # I made 2 different functions to handle calculating the BMI
@@ -30,7 +32,7 @@ def check_bmi(bmi):
 # user is not valid. In which case the counter, i, is not incremented
 i = 0
 while i < 12:
-    choice = input("Do you wish to check your BMI in the metric or English system? ")
+    choice = input("Do you wish to check your BMI in the metric or English system? ").lower()
     try:
         if choice == "exit" or choice == "stop":
             print("Goodbye...")
@@ -39,12 +41,12 @@ while i < 12:
             weight = float(input("Enter your weight in pounds: "))
             height = int(input("Enter your height in inches: "))
             bmi_eng(weight, height)
-            i = i + 1
+            i += 1
         elif "metric" in choice or choice[0] == 'm':
             weight = float(input("Enter your weight in kilograms: "))
             height = float(input("Enter your height in meters: "))
             bmi_met(weight, height)
-            i = i + 1
+            i += 1
         else:
             print("Your response was not recognized, please try again...")
     except ValueError:
@@ -53,8 +55,30 @@ while i < 12:
 
 
 # Problem 2 #
-
-
+print("\n\nWelcome to Paper, Rock, Scissors! Prepare to lose!")
+print("There will be 10 rounds. Ready? GO!")
+comp_choices = ["paper", "rock", "scissors"]
+i = 0
+while i < 10:
+    comp_choice = random.choice(comp_choices)
+    player_choice = input("Please type either Paper, Rock, or Scissors: ").lower()
+    if comp_choice == player_choice:
+        print("You and the computer both picked %s, it's a tie!!\n" % player_choice)
+        i += 1
+    elif player_choice == "rock" and comp_choice == "paper":
+        print("You picked rock and the computer picked paper, computer wins!!\n")
+        i += 1
+    elif player_choice == "scissors" and comp_choice == "rock":
+        print("You picked scissors and the computer picked rock, computer wins!!\n")
+        i += 1
+    elif player_choice == "paper" and comp_choice == "scissors":
+        print("You picked paper and the computer picked scissors, computer wins!!\n")
+        i += 1
+    elif player_choice not in comp_choices:
+        print("Your choice isn't valid! Try again!\n")
+    else:
+        print("You picked %s and the computer picked %s, you win!!!\n" % (player_choice, comp_choice))
+        i += 1
 
 # End of problem 2
 
