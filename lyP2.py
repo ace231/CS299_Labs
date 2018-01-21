@@ -24,7 +24,7 @@ def check_bmi(bmi):
     elif bmi >= 30:
         print("Your BMI of %.2f signals possible obesity" % bmi)
     elif bmi >= 25:
-        print("Your BMI of %.2f signals possible overweightness" % bmi)
+        print("Your BMI of %.2f signals you may be overweight" % bmi)
     else:
         print("Your BMI of %.2f is normal" % bmi)
 
@@ -55,10 +55,18 @@ while i < 12:
 
 
 # Problem 2 #
+# For the paper, rock, scissors game the computer is allowed to pick randomly
+# from a list of 3 elements containing "paper", "rock", and "scissors".
+# To pick randomly from the 3, the random module's choice function is used.
+# The game loops 10 times and each time the computer's choice is checked
+# against the players. All possibilities where the computer can win are checked 
+# as well as the possibility the player and computer made the same choice.
+# The last remaining possibility is where the player wins
 print("\n\nWelcome to Paper, Rock, Scissors! Prepare to lose!")
 print("There will be 10 rounds. Ready? GO!")
 comp_choices = ["paper", "rock", "scissors"]
 i = 0
+player_wins = 0
 while i < 10:
     comp_choice = random.choice(comp_choices)
     player_choice = input("Please type either Paper, Rock, or Scissors: ").lower()
@@ -79,6 +87,8 @@ while i < 10:
     else:
         print("You picked %s and the computer picked %s, you win!!!\n" % (player_choice, comp_choice))
         i += 1
+        player_wins += 1
+print("You won %d rounds out of 10!" % player_wins)
 
 # End of problem 2
 
