@@ -5,17 +5,21 @@
 
 import random
 
+
 # Problem 1 #
+
 
 # I made 2 different functions to handle calculating the BMI
 # in either the metric or English/Imperial system
 def bmi_met(w, h):
-    bmi = float(w / (h*h))
+    bmi = float(w / (h * h))
     check_bmi(bmi)
 
+
 def bmi_eng(w, h):
-    bmi = float((w / (h*h)) * 703)
+    bmi = float((w / (h * h)) * 703)
     check_bmi(bmi)
+
 
 # The calculated BMI from either function is checked here
 def check_bmi(bmi):
@@ -28,29 +32,38 @@ def check_bmi(bmi):
     else:
         print("Your BMI of %.2f is normal" % bmi)
 
-# This part of the program just runs a loop 12 times, unless the input from the
-# user is not valid. In which case the counter, i, is not incremented
+
+# This part of the program just runs a loop 12 times
 i = 0
 while i < 12:
     choice = input("Do you wish to check your BMI in the metric or English system? ").lower()
     try:
-        if choice == "exit" or choice == "stop":
+        if len(choice) == 0:
+            print("No input detected, please try again...")
+            continue
+        elif choice == "exit" or choice == "stop":
             print("Goodbye...")
             break
         elif "english" in choice or choice[0] == 'e':
             weight = float(input("Enter your weight in pounds: "))
             height = int(input("Enter your height in inches: "))
+            if weight == 0 or height == 0:
+                print("Sorry, but 0 is not allowed as an input, try again.")
+                continue
             bmi_eng(weight, height)
-            i += 1
         elif "metric" in choice or choice[0] == 'm':
             weight = float(input("Enter your weight in kilograms: "))
             height = float(input("Enter your height in meters: "))
+            if weight == 0 or height == 0:
+                print("Sorry, but 0 is not allowed as an input, try again.")
+                continue
             bmi_met(weight, height)
-            i += 1
         else:
             print("Your response was not recognized, please try again...")
+        i = + 1
     except ValueError:
         print("The input provided was not valid, try again...")
+    print("\n")
 # End of problem 1
 
 
@@ -93,4 +106,98 @@ print("You won %d rounds out of 10!" % player_wins)
 # End of problem 2
 
 
+"""
+Do you wish to check your BMI in the metric or English system? eng
+Enter your weight in pounds: 150
+Enter your height in inches: 70
+Your BMI of 21.52 is normal
 
+Do you wish to check your BMI in the metric or English system? eng
+Enter your weight in pounds: 150
+Enter your height in inches: 60
+Your BMI of 29.29 signals you may be overweight
+
+Do you wish to check your BMI in the metric or English system? e
+Enter your weight in pounds: 150
+Enter your height in inches: 55
+Your BMI of 34.86 signals possible obesity
+
+Do you wish to check your BMI in the metric or English system? eng
+Enter your weight in pounds: 150
+Enter your height in inches: 50
+Your BMI of 42.18 signals possible extreme obesity
+
+Do you wish to check your BMI in the metric or English system? met
+Enter your weight in kilograms: 68.0389
+Enter your height in meters: 1.778
+Your BMI of 21.52 is normal
+
+Do you wish to check your BMI in the metric or English system? met
+Enter your weight in kilograms: 68.0389
+Enter your height in meters: 1.524
+Your BMI of 29.29 signals you may be overweight
+
+Do you wish to check your BMI in the metric or English system? met
+Enter your weight in kilograms: 68.0389
+Enter your height in meters: 1.397
+Your BMI of 34.86 signals possible obesity
+
+Do you wish to check your BMI in the metric or English system? met
+Enter your weight in kilograms: 68.0389
+Enter your height in meters: 1.27
+Your BMI of 42.18 signals possible extreme obesity
+
+Do you wish to check your BMI in the metric or English system? 3/3/3
+Your response was not recognized, please try again...
+
+Do you wish to check your BMI in the metric or English system? fds
+Your response was not recognized, please try again...
+
+Do you wish to check your BMI in the metric or English system? 
+No input detected, please try again...
+
+Do you wish to check your BMI in the metric or English system? m
+Enter your weight in kilograms: 
+The input provided was not valid, try again...
+
+Do you wish to check your BMI in the metric or English system? m
+Enter your weight in kilograms: 0
+Enter your height in meters: 0
+Sorry, but 0 is not allowed as an input, try again.
+
+
+
+Welcome to Paper, Rock, Scissors! Prepare to lose!
+There will be 10 rounds. Ready? GO!
+Please type either Paper, Rock, or Scissors: paper
+You picked paper and the computer picked rock, you win!!!
+
+Please type either Paper, Rock, or Scissors: rock
+You picked rock and the computer picked scissors, you win!!!
+
+Please type either Paper, Rock, or Scissors: rock
+You picked rock and the computer picked paper, computer wins!!
+
+Please type either Paper, Rock, or Scissors: rock
+You and the computer both picked rock, it's a tie!!
+
+Please type either Paper, Rock, or Scissors: scissors
+You picked scissors and the computer picked paper, you win!!!
+
+Please type either Paper, Rock, or Scissors: paper
+You and the computer both picked paper, it's a tie!!
+
+Please type either Paper, Rock, or Scissors: rock
+You picked rock and the computer picked paper, computer wins!!
+
+Please type either Paper, Rock, or Scissors: scissors
+You picked scissors and the computer picked rock, computer wins!!
+
+Please type either Paper, Rock, or Scissors: paper
+You picked paper and the computer picked rock, you win!!!
+
+Please type either Paper, Rock, or Scissors: rock
+You picked rock and the computer picked scissors, you win!!!
+
+You won 5 rounds out of 10!
+"""
